@@ -10,7 +10,7 @@ public class AppTest {
 			ObjetoEnviaEmail enviaEmail = new ObjetoEnviaEmail("aqui vai o email", "nome de que está enviando",
 					"assunto do email", "corpo do email");
 			
-			enviaEmail.enviarEmail();
+			enviaEmail.enviarEmail(false);
 
 		} catch (Exception e) {
 			e.printStackTrace();

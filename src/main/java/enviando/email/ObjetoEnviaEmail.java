@@ -37,7 +37,7 @@ public class ObjetoEnviaEmail {
 
 
 	// METODO PARA ENVIAR EMAIL PELO JAVA
-	public void enviarEmail() {
+	public void enviarEmail(boolean envioHTML) {
 		
 
 		try {
@@ -77,7 +77,16 @@ public class ObjetoEnviaEmail {
 			
 			message.setSubject(assuntoEmail);
 			
+			
+			if(envioHTML) {
+				
+				message.setContent(textoEmail, "text/html); charset=utf-8");
+				
+			}else {
+			
 			message.setText(textoEmail);
+			
+			}
 			
 			Transport.send(message);
 
