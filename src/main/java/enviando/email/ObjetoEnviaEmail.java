@@ -14,13 +14,29 @@ import javax.mail.internet.MimeMessage;
 public class ObjetoEnviaEmail {
 	
 	
-
-	private String userName = "aqui vai o sua conta email"; 
-	private String senha = "aqui vai a sua senha de email";
+    // ATRIBUTOS DA CLASSE 
+	private String userName = "aqui vai o email"; 
+	private String senha = "aqui vai a senha do email";
+	
+	private String listaDestinatarios = "";
+	private String nomeRemetente = "";
+	private String assuntoEmail = "";
+	private String textoEmail = "";
 	
 	
+	
+	// CONSTRUTOR COM ARGUMENTOS 
+
+    public ObjetoEnviaEmail(String listaDestinatarios, String nomeRemetente, String assuntoEmail, String textoEmail) {
+		super();
+		this.listaDestinatarios = listaDestinatarios;
+		this.nomeRemetente = nomeRemetente;
+		this.assuntoEmail = assuntoEmail;
+		this.textoEmail = textoEmail;
+	}
 
 
+	// METODO PARA ENVIAR EMAIL PELO JAVA
 	public void enviarEmail() {
 		
 
@@ -51,17 +67,17 @@ public class ObjetoEnviaEmail {
 				}
 			});
 			
-			Address[] toUser = InternetAddress.parse("jniostrc@gmail.com,joseademarti@gmail.com");
+			Address[] toUser = InternetAddress.parse(listaDestinatarios);
 			
 			Message message = new MimeMessage(session);
 			
-			message.setFrom(new InternetAddress(userName));
+			message.setFrom(new InternetAddress(userName, nomeRemetente));
 			
 			message.setRecipients(Message.RecipientType.TO, toUser);
 			
-			message.setSubject("Chegou e-mail enviado com java");
+			message.setSubject(assuntoEmail);
 			
-			message.setText("Olá você recebeu o email enviado pelo java novamente");
+			message.setText(textoEmail);
 			
 			Transport.send(message);
 
